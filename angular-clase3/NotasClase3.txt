@@ -1,0 +1,138 @@
+Paso 1. Disponer del esqueleto del proyecto o generarlo y abrirlo con VSCODE
+
+ng new angular-clase3
+cd angular-clase3
+code .
+
+# correr la aplicación en un terminal
+ng serve 
+
+Paso 2. Agregar css bootstrap en index.html
+
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+Paso 3. Generar modulo, componente, servicio e interceptor
+
+ng generate module components/git-hub-user --routing --flat
+ng generate component components/git-hub-user
+ng generate service services/user
+ng generate interceptor services/user
+
+Paso 4. Agregar la url del api a consultar en environments.
+
+...
+	,
+	urlApi: 'https://api.github.com'  
+...
+
+Paso 5. Implementar el servicio.
+
+// No alcance a anotar todo, pero seria algo como lo siguiente:
+import { Injectable } from '@angular/core';
+import { HttpClient,  HttpHeaders  } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+
+  constructor( private http: HttpClient ) {
+    console.log('Api github services');
+  }
+
+  getAll() : Observable<any> {
+    return this.http.get(`${environment.urlApi}/users/imbi7py/followers`);
+  }
+
+}
+
+
+Paso 6. Agregar el servicio como un provider desde el modulo (importarlo e incluirlo en providers)
+
+// Archivo: app/components/git-hub-user.module.ts
+// ...resto del archivo...
+import { UserService } from '../services/user.service';
+
+@NgModule({
+  declarations: [
+    GitHubUserComponent
+  ],
+  imports: [
+    CommonModule,
+    GitHubUserRoutingModule
+  ],
+  providers: [UserService]
+})
+export class GitHubUserModule { }
+
+
+Paso 7. Implementar componente git-hub-user
+
+// Archivo: app/components/git-hub-user/git-hub-user.component.ts
+import { UserService } from '../../services/user.service';
+…
+	public users: Array<any> = [];
+	// Inyecta el servicio en la variable _userService de la clase, declarada implícitamente 
+	constructor(private _userService: UserService) {}
+…
+	ngOnInit(): void {
+    		this.getUser();
+	}
+
+	private getUser(): void { 
+		this.userService.getAll().subscribe((users) => {
+			this.users = users;
+		});
+	}
+
+8. Crear plantilla HTML
+
+// Archivo: app/components/git-hub-user/git-hub-user.component.html
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Username</th>
+			<th scope="col">Node Id</th>
+			<th scope="col">Imagen</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let user of users; let i = index">
+			<td scope="row">{{ i + 1 }}</td>
+			<td>{{ user.login }}</td>
+			<td>{{ user.node_id }}</td>
+			<td><img width="45px" [src]="user.avatar_url" /></td>
+		</tr>
+	</tbody>
+</table>
+
+9. Agregar el componente en el routing.
+
+// Archivo: app-routing.module.ts
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { GitHubUserComponent } from './git-hub-user/git-hub-user.component';
+
+const routes: Routes = [
+
+  { path: 'githubuser', component: GitHubUserComponent, children: [{ path: '', component: GitHubUserComponent }] }
+
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+10. Agregar el modulo HttpClientModule y GitHubUserModule a app.module.ts imports (Si no, no me funciona en ngFor)
+
+11. Abrir la aplicación 
+
+open "http://localhost:4200/githubuser"
+
