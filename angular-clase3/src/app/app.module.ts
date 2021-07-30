@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GitHubUserModule } from './components/git-hub-user.module';
+import { ComunicacionPadreModule } from './components/comunicacion-padre/comunicacion-padre.module';
+import { GitHubUserModule } from './components/git-hub-user-module/git-hub-user.module';
 
 @NgModule({
   declarations: [
@@ -13,8 +14,9 @@ import { GitHubUserModule } from './components/git-hub-user.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    GitHubUserModule
+    ComunicacionPadreModule,
+    GitHubUserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

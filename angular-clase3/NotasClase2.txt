@@ -1,0 +1,10 @@
+ng new angular-clase2 --style=scss
+cd angular-clase2
+ng generate module components/comunicacion-hijo --routing
+ng generate module components/comunicacion-padre --routing
+ng generate component components/comunicacion-hijo/hijo
+ng generate component components/comunicacion-padre/padre
+ng generate component components/pagenotfound
+ng serve &
+code .
+

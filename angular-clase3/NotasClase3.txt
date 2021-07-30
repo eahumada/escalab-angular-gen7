@@ -1,11 +1,11 @@
 Paso 1. Disponer del esqueleto del proyecto o generarlo y abrirlo con VSCODE
 
-ng new angular-clase3
+ng new angular-clase3 --style=scss
 cd angular-clase3
 code .
 
 # correr la aplicación en un terminal
-ng serve 
+ng serve
 
 Paso 2. Agregar css bootstrap en index.html
 
@@ -15,8 +15,8 @@ Paso 2. Agregar css bootstrap en index.html
 
 Paso 3. Generar modulo, componente, servicio e interceptor
 
-ng generate module components/git-hub-user --routing --flat
-ng generate component components/git-hub-user
+ng generate module components/git-hub-user-module --routing --flat
+ng generate component components/git-hub-user-module/git-hub-user
 ng generate service services/user
 ng generate interceptor services/user
 
