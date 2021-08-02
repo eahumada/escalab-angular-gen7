@@ -1,0 +1,93 @@
+- Generating browser application bundles (phase: setup)...
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names         |      Size
+vendor.js           | vendor        |   2.50 MB
+polyfills.js        | polyfills     | 128.56 kB
+main.js             | main          |  25.01 kB
+runtime.js          | runtime       |   6.58 kB
+styles.css          | styles        | 118 bytes
+
+| Initial Total |   2.66 MB
+
+Build at: 2021-08-02T04:35:32.281Z - Hash: b43c779e688de867b0de - Time: 12202ms
+
+./src/app/app-routing.module.ts:4:0-86 - Error: Module not found: Error: Can't resolve './components/nopagefound/nopagefound.component' in '/Users/eahumada/Projects/GitHub/escalab/angular/escalab-angular-gen7/angular-clase4/src/app'
+
+./src/app/app-routing.module.ts:5:0-115 - Error: Module not found: Error: Can't resolve './components/comunicacion-padre/comunicacion-padre-routing.module' in '/Users/eahumada/Projects/GitHub/escalab/angular/escalab-angular-gen7/angular-clase4/src/app'
+
+./src/app/app.module.ts:7:0-100 - Error: Module not found: Error: Can't resolve './components/comunicacion-padre/comunicacion-padre.module' in '/Users/eahumada/Projects/GitHub/escalab/angular/escalab-angular-gen7/angular-clase4/src/app'
+
+Error: src/app/app-routing.module.ts:4:38 - error TS2307: Cannot find module './components/nopagefound/nopagefound.component' or its corresponding type declarations.
+
+4 import { NopagefoundComponent } from './components/nopagefound/nopagefound.component';
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/app-routing.module.ts:5:48 - error TS2307: Cannot find module './components/comunicacion-padre/comunicacion-padre-routing.module' or its corresponding type declarations.
+
+5 import { ComunicacionPadreRoutingModule } from './components/comunicacion-padre/comunicacion-padre-routing.module';
+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/app-routing.module.ts:14:12 - error NG1010: Value at position 2 in the NgModule.imports of AppRoutingModule is not a reference
+  Value could not be determined statically.
+
+ 14   imports: [
+               ~
+ 15     RouterModule.forRoot(routes),
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+ 17     ComunicacionPadreRoutingModule,
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 18   ],
+    ~~~
+
+  src/app/app-routing.module.ts:17:5
+    17     ComunicacionPadreRoutingModule,
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Unknown reference.
+
+
+Error: src/app/app.component.html:13:1 - error NG8001: 'router-outlet' is not a known element:
+1. If 'router-outlet' is an Angular component, then verify that it is part of this module.
+2. If 'router-outlet' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
+
+13 <router-outlet></router-outlet>
+   ~~~~~~~~~~~~~~~
+
+  src/app/app.component.ts:5:16
+    5   templateUrl: './app.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AppComponent.
+
+
+Error: src/app/app.module.ts:7:41 - error TS2307: Cannot find module './components/comunicacion-padre/comunicacion-padre.module' or its corresponding type declarations.
+
+7 import { ComunicacionPadreModule } from './components/comunicacion-padre/comunicacion-padre.module';
+                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/app.module.ts:14:12 - error NG1010: Value at position 2 in the NgModule.imports of AppModule is not a reference
+  Value could not be determined statically.
+
+ 14   imports: [
+               ~
+ 15     BrowserModule,
+    ~~~~~~~~~~~~~~~~~~
+... 
+ 19     HttpClientModule
+    ~~~~~~~~~~~~~~~~~~~~
+ 20   ],
+    ~~~
+
+  src/app/app.module.ts:17:5
+    17     ComunicacionPadreModule,
+           ~~~~~~~~~~~~~~~~~~~~~~~
+    Unknown reference.
+
+
+
+
+** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
+
